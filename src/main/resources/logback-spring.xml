@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <includeCallerData>true</includeCallerData>
+        </encoder>
+
+        <encoder
+                class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+
+
+            <providers>
+                <timestamp>
+                    <fieldName>time</fieldName>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <logLevel>
+                    <fieldName>lvl</fieldName>
+                </logLevel>
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+<!--                <mdc>-->
+<!--                    <excludeMdcKeyName>status</excludeMdcKeyName>-->
+<!--                    <excludeMdcKeyName>latency</excludeMdcKeyName>-->
+<!--                </mdc>-->
+                <message>
+                    <fieldName>msg</fieldName>
+                </message>
+                <stackTrace>
+                    <fieldName>exception</fieldName>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerThrowable>1</maxDepthPerThrowable>
+                        <rootCauseFirst>true</rootCauseFirst>
+                        <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                    </throwableConverter>
+                </stackTrace>
+                <arguments/>
+                <pattern>
+                    <omitEmptyFields>true</omitEmptyFields>
+                    <pattern>
+                        {
+                        "svc": "webflux-best-pratices",
+                        "status": "#asLong{%mdc{status}}",
+                        "latency": "#asLong{%mdc{latency}}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>
