@@ -9,8 +9,8 @@ public class CustomLoggerFactory {
      * @param name
      * @return XLogger instance
      */
-    public static CustomLogger getCustomLogger(String name) {
-        return new CustomLogger(LoggerFactory.getLogger(name));
+    public static CustomCustomLogger getCustomLogger(String name) {
+        return new CustomCustomLogger(LoggerFactory.getLogger(name));
     }
 
     /**
@@ -20,7 +20,7 @@ public class CustomLoggerFactory {
      * @param clazz
      * @return XLogger instance by name
      */
-    public static CustomLogger getCustomLogger(Class<?> clazz) {
+    public static CustomCustomLogger getCustomLogger(Class<?> clazz) {
         return getCustomLogger(clazz.getName());
     }
 }

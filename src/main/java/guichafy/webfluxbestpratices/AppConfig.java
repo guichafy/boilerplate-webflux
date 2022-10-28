@@ -1,26 +1,20 @@
 package guichafy.webfluxbestpratices;
 
-import guichafy.webfluxbestpratices.logger.CustomLoggerFactory;
-import guichafy.webfluxbestpratices.logger.LoggerWrapper;
 import guichafy.webfluxbestpratices.logger.codes.LogCodes;
+import lombok.CustomLog;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
 @Configuration
-//@Slf4j
+@CustomLog
 public class AppConfig {
-
-
-//    Logger log = LoggerFactory.getLogger(AppConfig.class);
-
-    LoggerWrapper log = CustomLoggerFactory.getCustomLogger(AppConfig.class);
-
 
     @PostConstruct
     public void init(){
-        log.doLog("Teste", LogCodes.E_10000);
-//       log.info("Init");
+        log.doLog("Logando Info no Init", LogCodes.I_10000);
+        log.doLog("Logando Warn no Init", LogCodes.W_10000);
+        log.doLog("Logando Error no Init", LogCodes.E_10000);
     }
 
 }

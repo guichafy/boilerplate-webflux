@@ -7,9 +7,9 @@ import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
 import org.slf4j.spi.LocationAwareLogger;
 
-public class CustomLogger extends LoggerWrapper implements Logger {
+public class CustomCustomLogger extends CustomLoggerWrapper {
 
-    private static final String FQCN = CustomLogger.class.getName();
+    private static final String FQCN = CustomCustomLogger.class.getName();
     static Marker FLOW_MARKER = MarkerFactory.getMarker("FLOW");
     static Marker ENTRY_MARKER = MarkerFactory.getMarker("ENTRY");
     static Marker EXIT_MARKER = MarkerFactory.getMarker("EXIT");
@@ -67,11 +67,11 @@ public class CustomLogger extends LoggerWrapper implements Logger {
      *
      * @param logger underlying logger
      */
-    public CustomLogger(Logger logger) {
+    public CustomCustomLogger(Logger logger) {
         // If class B extends A, assuming B does not override method x(), the caller
         // of new B().x() is A and not B, see also
         // http://jira.qos.ch/browse/SLF4J-105
-        super(logger, LoggerWrapper.class.getName());
+        super(logger, CustomLoggerWrapper.class.getName());
     }
 
     /**

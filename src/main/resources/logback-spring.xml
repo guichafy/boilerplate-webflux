@@ -3,10 +3,6 @@
     <appender name="CONSOLE"
               class="ch.qos.logback.core.ConsoleAppender">
 
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <includeCallerData>true</includeCallerData>
-        </encoder>
-
         <encoder
                 class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
 
@@ -17,17 +13,17 @@
                     <timeZone>UTC</timeZone>
                 </timestamp>
                 <logLevel>
-                    <fieldName>lvl</fieldName>
+                    <fieldName>level</fieldName>
                 </logLevel>
-                <loggerName>
-                    <fieldName>logger</fieldName>
-                </loggerName>
+<!--                <loggerName>-->
+<!--                    <fieldName>logger</fieldName>-->
+<!--                </loggerName>-->
 <!--                <mdc>-->
 <!--                    <excludeMdcKeyName>status</excludeMdcKeyName>-->
 <!--                    <excludeMdcKeyName>latency</excludeMdcKeyName>-->
 <!--                </mdc>-->
                 <message>
-                    <fieldName>msg</fieldName>
+                    <fieldName>message</fieldName>
                 </message>
                 <stackTrace>
                     <fieldName>exception</fieldName>
@@ -42,8 +38,13 @@
                     <omitEmptyFields>true</omitEmptyFields>
                     <pattern>
                         {
-                        "svc": "webflux-best-pratices",
+                        "app": "webflux-best-pratices",
                         "status": "#asLong{%mdc{status}}",
+                        "caller": {
+                            "class": "%class",
+                            "method": "%method",
+                            "line": "%line"
+                        },
                         "latency": "#asLong{%mdc{latency}}"
                         }
                     </pattern>
