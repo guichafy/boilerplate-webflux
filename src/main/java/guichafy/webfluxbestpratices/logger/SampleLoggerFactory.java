@@ -2,15 +2,15 @@ package guichafy.webfluxbestpratices.logger;
 
 import org.slf4j.LoggerFactory;
 
-public class CustomLoggerFactory {
+public class SampleLoggerFactory {
     /**
      * Get an XLogger instance by name.
      *
      * @param name
      * @return XLogger instance
      */
-    public static CustomCustomLogger getCustomLogger(String name) {
-        return new CustomCustomLogger(LoggerFactory.getLogger(name));
+    public static SampleLogger getCustomLogger(String name) {
+        return new SampleLogger(LoggerFactory.getLogger(name));
     }
 
     /**
@@ -20,7 +20,7 @@ public class CustomLoggerFactory {
      * @param clazz
      * @return XLogger instance by name
      */
-    public static CustomCustomLogger getCustomLogger(Class<?> clazz) {
+    public static SampleLogger getCustomLogger(Class<?> clazz) {
         return getCustomLogger(clazz.getName());
     }
 }

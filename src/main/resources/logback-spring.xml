@@ -6,7 +6,6 @@
         <encoder
                 class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
 
-
             <providers>
                 <timestamp>
                     <fieldName>time</fieldName>

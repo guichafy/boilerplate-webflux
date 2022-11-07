@@ -1,11 +1,12 @@
-package guichafy.webfluxbestpratices.logger.codes;
+package guichafy.webfluxbestpratices.logger;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import org.slf4j.event.Level;
 
-public enum LogCodes {
+public enum LogCode {
 
     I_10000("Info generico"),
+    I_00001("Filters was initialized."),
     W_10000("Warn generico"),
     E_10000("Erro generico");
 
@@ -13,16 +14,8 @@ public enum LogCodes {
     private final Level level;
 
 
-    LogCodes(String message) {
-        if(this.name().startsWith("I")){
-            this.level = Level.INFO;
-        } else if(this.name().startsWith("W")){
-            this.level = Level.WARN;
-        } else if(this.name().startsWith("E")){
-            this.level = Level.ERROR;
-        } else {
-            this.level = Level.WARN;
-        }
+    LogCode(String message) {
+        this.level = getLevelByName(this.name());
         this.message = message;
     }
 
@@ -41,5 +34,17 @@ public enum LogCodes {
 
     public String getMessage() {
         return message;
+    }
+
+    private Level getLevelByName(String name){
+        if(name.startsWith("I")){
+            return Level.INFO;
+        } else if(name.startsWith("W")){
+            return Level.WARN;
+        } else if(name.startsWith("E")){
+            return Level.ERROR;
+        } else {
+            return Level.WARN;
+        }
     }
 }
