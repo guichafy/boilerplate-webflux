@@ -1,4 +1,4 @@
-package guichafy.webfluxbestpratices.config;
+package guichafy.webfluxbestpratices.database;
 
 import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.context.annotation.Bean;

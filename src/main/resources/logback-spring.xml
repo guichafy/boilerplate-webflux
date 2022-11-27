@@ -39,11 +39,7 @@
                         {
                         "app": "webflux-best-pratices",
                         "status": "#asLong{%mdc{status}}",
-                        "caller": {
-                            "class": "%class",
-                            "method": "%method",
-                            "line": "%line"
-                        },
+                        "class": "%class",
                         "latency": "#asLong{%mdc{latency}}"
                         }
                     </pattern>
